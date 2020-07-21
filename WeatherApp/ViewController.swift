@@ -17,7 +17,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let location = locationManager.exposedLocation else { return }
+        //TODO: - Crash on first launch
+        
+        guard let location = locationManager.exposedLocation else {
+            print("Location is nil")
+            return
+            
+        }
 
         locationManager.getPlace(for: location) { placemark in
             guard let placemark = placemark else { return }
@@ -28,6 +34,7 @@ class ViewController: UIViewController {
             }
             print(output)
         }
+        
     }
     
 }
