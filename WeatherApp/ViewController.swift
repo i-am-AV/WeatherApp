@@ -7,19 +7,28 @@
 //
 
 import UIKit
-import CoreLocation
 
 class ViewController: UIViewController {
     
     //MARK: - Property
     private let locationManager = LocationManager()
     
-    //MARK: - Life cycle
+    //MARK: - Life cycle    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let location = locationManager.exposedLocation else { return }
+
+        locationManager.getPlace(for: location) { placemark in
+            guard let placemark = placemark else { return }
+
+            var output = "Our location is: "
+            if let town = placemark.locality {
+                output = output + " \(town)"
+            }
+            print(output)
+        }
     }
     
-    // MARK:  <#Description#>
 }
 

@@ -13,6 +13,9 @@ import CoreLocation
 final class LocationManager: NSObject {
     //MARK: - Property
     private let locationManager = CLLocationManager()
+    var exposedLocation: CLLocation? {
+        return locationManager.location
+    }
     
     //MARK: - Inizilization
     override init() {
