@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2DCE3BF124C6E2A400FC676E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCE3BF024C6E2A400FC676E /* LocationManager.swift */; };
+		2DE1909124C87A6400C9F215 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DE1909024C87A6400C9F215 /* NetworkManager.swift */; };
 		951ACEDC24C7241A00CBE2D0 /* LabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951ACEDB24C7241A00CBE2D0 /* LabelExtension.swift */; };
 		951ACEFF24C786A800CBE2D0 /* StackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951ACEFE24C786A800CBE2D0 /* StackViewExtension.swift */; };
 		951ACF0124C7A2D200CBE2D0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951ACF0024C7A2D200CBE2D0 /* Model.swift */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		2DCE3BF024C6E2A400FC676E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		2DE1909024C87A6400C9F215 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		7F39558C615A1CB2D9B9C6CE /* Pods-WeatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.debug.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.debug.xcconfig"; sourceTree = "<group>"; };
 		90C717F466D6403DB02D503D /* Pods-WeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.release.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.release.xcconfig"; sourceTree = "<group>"; };
 		951ACEDB24C7241A00CBE2D0 /* LabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtension.swift; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				2DCE3BF024C6E2A400FC676E /* LocationManager.swift */,
+				2DE1909024C87A6400C9F215 /* NetworkManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				9559D90724C6F60400151574 /* CitySearchViewController.swift in Sources */,
 				9559D90D24C6F76200151574 /* WeatherViewController.swift in Sources */,
 				951ACF0124C7A2D200CBE2D0 /* Model.swift in Sources */,
+				2DE1909124C87A6400C9F215 /* NetworkManager.swift in Sources */,
 				2DCE3BF124C6E2A400FC676E /* LocationManager.swift in Sources */,
 				9559D8F024C6A94700151574 /* AppDelegate.swift in Sources */,
 				951ACEFF24C786A800CBE2D0 /* StackViewExtension.swift in Sources */,

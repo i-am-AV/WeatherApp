@@ -8,50 +8,67 @@
 
 import Foundation
 
-struct Coord {
-    let lon: Int
-    let lat: Int
+// MARK: - WeatherAPI
+struct WeatherAPI: Decodable {
+    let coord: Coord
     let weather: [Weather]
     let base: String
-    let main: [Main]
-    let wind: [Wind]
-    let clounds: [Clounds]
+    let main: Main
+    let visibility: Int
+    let wind: Wind
+    let clouds: Clouds
     let dt: Int
-    let sys: [Sys]
+    let sys: Sys
     let id: Int
     let name: String
     let cod: Int
 }
 
-struct Weather {
-    let id: Int
-    let main: String
-    let description: String
-    let icon: String
-}
-
-struct Main {
-    let temp: Double
-    let pressure: Double
-    let humidity: Int
-    let tempMin: Double
-    let tempMax: Double
-    let seaLevel: Double
-    let grndLevel: Double
-}
-
-struct Wind {
-    let speed: Double
-    let deg: Int
-}
-
-struct Clounds {
+// MARK: - Clouds
+struct Clouds: Decodable {
     let all: Int
 }
 
-struct Sys {
-    let message: Double
+// MARK: - Coord
+struct Coord: Decodable {
+    let lon, lat: Double
+}
+
+// MARK: - Main
+struct Main: Decodable {
+    let temp: Double
+    let pressure, humidity: Int
+    let tempMin, tempMax: Double
+
+    enum CodingKeys: String, CodingKey {
+        case temp, pressure, humidity
+        case tempMin = "temp_min"
+        case tempMax = "temp_max"
+    }
+}
+
+// MARK: - Sys
+struct Sys: Decodable {
+    let type, id: Int
+    let message: Double?
     let country: String
-    let sunrise: Int
-    let sunset: Int
+    let sunrise, sunset: Int
+}
+
+// MARK: - Weather
+struct Weather: Decodable {
+    let id: Int
+    let main, weatherDescription, icon: String
+
+    enum CodingKeys: String, CodingKey {
+        case id, main
+        case weatherDescription = "description"
+        case icon
+    }
+}
+
+// MARK: - Wind
+struct Wind: Decodable {
+    let speed: Double
+    let deg: Int
 }
