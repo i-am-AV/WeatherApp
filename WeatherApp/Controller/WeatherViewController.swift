@@ -63,11 +63,7 @@ extension WeatherViewController {
     private func configurateView() {
         view.backgroundColor = .white
         
-        navigationItem.title = Constants.title.rawValue
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                                            target: self,
-                                                            action: #selector(addTapped))
+        configurateNavigation()
         
         view.addSubview(stackView)
         configurateStackView()
@@ -81,7 +77,6 @@ extension WeatherViewController {
     
     private func configurateNavigation() {
         navigationItem.title = Constants.title.rawValue
-        navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
                                                             action: #selector(addTapped))
@@ -92,7 +87,7 @@ extension WeatherViewController {
     }
     
     private func configurateStackView() {
-
+        
         cityLabel.configurateCityLabel()
         temperatureLabel.configurateTemperatureLabel()
         
