@@ -10,6 +10,7 @@
 		951ACEDC24C7241A00CBE2D0 /* LabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951ACEDB24C7241A00CBE2D0 /* LabelExtension.swift */; };
 		951ACEFF24C786A800CBE2D0 /* StackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951ACEFE24C786A800CBE2D0 /* StackViewExtension.swift */; };
 		951ACF0124C7A2D200CBE2D0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951ACF0024C7A2D200CBE2D0 /* Model.swift */; };
+		2DCE3BF124C6E2A400FC676E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCE3BF024C6E2A400FC676E /* LocationManager.swift */; };
 		9559D8F024C6A94700151574 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9559D8EF24C6A94700151574 /* AppDelegate.swift */; };
 		9559D8F924C6A94800151574 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9559D8F824C6A94800151574 /* Assets.xcassets */; };
 		9559D8FC24C6A94800151574 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9559D8FA24C6A94800151574 /* LaunchScreen.storyboard */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2DCE3BF024C6E2A400FC676E /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		7F39558C615A1CB2D9B9C6CE /* Pods-WeatherApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.debug.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.debug.xcconfig"; sourceTree = "<group>"; };
 		90C717F466D6403DB02D503D /* Pods-WeatherApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherApp.release.xcconfig"; path = "Target Support Files/Pods-WeatherApp/Pods-WeatherApp.release.xcconfig"; sourceTree = "<group>"; };
 		951ACEDB24C7241A00CBE2D0 /* LabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtension.swift; sourceTree = "<group>"; };
@@ -99,6 +101,8 @@
 				9559D90424C6F4CD00151574 /* View */,
 				9559D90524C6F4D500151574 /* Controller */,
 				951ACF0224C7A5AB00CBE2D0 /* Resources */,
+				9559D8F324C6A94700151574 /* ViewController.swift */,
+				2DCE3BF024C6E2A400FC676E /* LocationManager.swift */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -255,6 +259,8 @@
 				9559D90724C6F60400151574 /* CitySearchViewController.swift in Sources */,
 				9559D90D24C6F76200151574 /* WeatherViewController.swift in Sources */,
 				951ACF0124C7A2D200CBE2D0 /* Model.swift in Sources */,
+				2DCE3BF124C6E2A400FC676E /* LocationManager.swift in Sources */,
+				9559D8F424C6A94700151574 /* ViewController.swift in Sources */,
 				9559D8F024C6A94700151574 /* AppDelegate.swift in Sources */,
 				951ACEFF24C786A800CBE2D0 /* StackViewExtension.swift in Sources */,
 			);
@@ -393,6 +399,7 @@
 			baseConfigurationReference = 7F39558C615A1CB2D9B9C6CE /* Pods-WeatherApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2VY9AS466G;
 				INFOPLIST_FILE = WeatherApp/Resources/Info.plist;
@@ -400,8 +407,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = None.WeatherApp;
+				PRODUCT_BUNDLE_IDENTIFIER = abc.com.WeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -412,15 +420,18 @@
 			baseConfigurationReference = 90C717F466D6403DB02D503D /* Pods-WeatherApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2VY9AS466G;
 				INFOPLIST_FILE = WeatherApp/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = None.WeatherApp;
+				PRODUCT_BUNDLE_IDENTIFIER = abc.com.WeatherApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
