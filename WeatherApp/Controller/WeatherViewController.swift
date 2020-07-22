@@ -17,7 +17,7 @@ final class WeatherViewController: UIViewController {
     private let cityLabel = UILabel()
     private let temperatureLabel = UILabel()
     private var addedCities: [WeatherAPI] = []
-    private let network = NetworkManager()
+    private let networkManager = NetworkManager()
     
     //MARK: - Constants
     
@@ -32,7 +32,8 @@ final class WeatherViewController: UIViewController {
         super.viewDidLoad()
         
         configurateView()
-        network.getWeather()
+        networkManager.getWeatherByCity(city: "London")
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
