@@ -85,7 +85,6 @@ extension CitySearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-
 //MARK: - SearchController Protocols Implementation
 
 extension CitySearchViewController: UISearchResultsUpdating {
@@ -94,7 +93,6 @@ extension CitySearchViewController: UISearchResultsUpdating {
         filterContentForSearchText(searchBar.text!)
     }
 }
-
 
 //MARK: - Configurations & Constraints
 
@@ -109,7 +107,6 @@ extension CitySearchViewController {
     
     private func configurateNavigation() {
         navigationItem.title = Constants.cities.rawValue
-        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func configurateTableView() {
@@ -121,7 +118,6 @@ extension CitySearchViewController {
     }
     
     private func setTableViewConstraints() {
-        //        let indent: CGFloat = (navigationController?.navigationBar.frame.height)!
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
