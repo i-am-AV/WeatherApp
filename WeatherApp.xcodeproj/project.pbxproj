@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2DCE3BF124C6E2A400FC676E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCE3BF024C6E2A400FC676E /* LocationManager.swift */; };
 		951ACEDC24C7241A00CBE2D0 /* LabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951ACEDB24C7241A00CBE2D0 /* LabelExtension.swift */; };
 		951ACEFF24C786A800CBE2D0 /* StackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951ACEFE24C786A800CBE2D0 /* StackViewExtension.swift */; };
 		951ACF0124C7A2D200CBE2D0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951ACF0024C7A2D200CBE2D0 /* Model.swift */; };
-		2DCE3BF124C6E2A400FC676E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DCE3BF024C6E2A400FC676E /* LocationManager.swift */; };
 		9559D8F024C6A94700151574 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9559D8EF24C6A94700151574 /* AppDelegate.swift */; };
 		9559D8F924C6A94800151574 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9559D8F824C6A94800151574 /* Assets.xcassets */; };
 		9559D8FC24C6A94800151574 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9559D8FA24C6A94800151574 /* LaunchScreen.storyboard */; };
@@ -48,6 +48,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2DE1908F24C8780500C9F215 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2DCE3BF024C6E2A400FC676E /* LocationManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		7A1860CCC1A9E47FCACE6B6C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,12 +105,11 @@
 		9559D8EE24C6A94700151574 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				2DE1908F24C8780500C9F215 /* Services */,
 				9559D90324C6F4BA00151574 /* Model */,
 				9559D90424C6F4CD00151574 /* View */,
 				9559D90524C6F4D500151574 /* Controller */,
 				951ACF0224C7A5AB00CBE2D0 /* Resources */,
-				9559D8F324C6A94700151574 /* ViewController.swift */,
-				2DCE3BF024C6E2A400FC676E /* LocationManager.swift */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -260,7 +267,6 @@
 				9559D90D24C6F76200151574 /* WeatherViewController.swift in Sources */,
 				951ACF0124C7A2D200CBE2D0 /* Model.swift in Sources */,
 				2DCE3BF124C6E2A400FC676E /* LocationManager.swift in Sources */,
-				9559D8F424C6A94700151574 /* ViewController.swift in Sources */,
 				9559D8F024C6A94700151574 /* AppDelegate.swift in Sources */,
 				951ACEFF24C786A800CBE2D0 /* StackViewExtension.swift in Sources */,
 			);
@@ -403,6 +409,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2VY9AS466G;
 				INFOPLIST_FILE = WeatherApp/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
