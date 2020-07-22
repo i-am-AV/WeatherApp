@@ -32,6 +32,7 @@ final class WeatherViewController: UIViewController {
         super.viewDidLoad()
         
         configurateView()
+        // TODO: - First app launch location
     }
     
     override func viewWillAppear(_ animated: Bool) {
