@@ -9,12 +9,33 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    
+    //MARK: - Property
+    private let locationManager = LocationManager()
+    
+    //MARK: - Life cycle    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        //TODO: - Crash on first launch
+        
+        guard let location = locationManager.exposedLocation else {
+            print("Location is nil")
+            return
+            
+        }
+
+        locationManager.getPlace(for: location) { placemark in
+            guard let placemark = placemark else { return }
+
+            var output = "Our location is: "
+            if let town = placemark.locality {
+                output = output + " \(town)"
+            }
+            print(output)
+        }
+        
     }
-
-
+    
 }
 
