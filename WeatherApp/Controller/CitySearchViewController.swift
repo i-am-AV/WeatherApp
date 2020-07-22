@@ -14,8 +14,8 @@ final class CitySearchViewController: UIViewController {
     
     private let tableView = UITableView()
     private let searchController = UISearchController(searchResultsController: nil)
-    private let cities: [Coord] = []
-    private var filteredCities: [Coord] = []
+    private let cities: [WeatherAPI] = []
+    private var filteredCities: [WeatherAPI] = []
     
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
