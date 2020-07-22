@@ -39,7 +39,21 @@ struct Main: Decodable {
     let temp: Double
     let pressure, humidity: Int
     let tempMin, tempMax: Double
-
+    
+    var tempCelsius: Double {
+        return temp - 273.15
+    }
+    var tempMinCelsius: Double {
+        return tempMin - 273.15
+    }
+    var tempMaxCelsius: Double {
+        return tempMax - 273.15
+    }
+    
+//    var tempFahrenheit: Double {
+//        return (temp - 273.15) * 1.8 + 32
+//    }
+    
     enum CodingKeys: String, CodingKey {
         case temp, pressure, humidity
         case tempMin = "temp_min"
@@ -59,7 +73,7 @@ struct Sys: Decodable {
 struct Weather: Decodable {
     let id: Int
     let main, weatherDescription, icon: String
-
+    
     enum CodingKeys: String, CodingKey {
         case id, main
         case weatherDescription = "description"

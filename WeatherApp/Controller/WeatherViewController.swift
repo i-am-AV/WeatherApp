@@ -32,13 +32,15 @@ final class WeatherViewController: UIViewController {
         super.viewDidLoad()
         
         configurateView()
-        networkManager.getWeatherByCity(city: "London")
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        networkManager.getWeatherByCity(city: "Moscow") { weather in
+            self.cityLabel.text = weather.name
+            self.temperatureLabel.text = String(format: "%.0f", weather.main.tempCelsius) + "°"
+        }
         //TODO: load data & update table view & labels
     }
 }

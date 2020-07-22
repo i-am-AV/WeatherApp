@@ -11,9 +11,14 @@ import Alamofire
 
 final class NetworkManager {
     
+    //MARK: - Properties
+    private let weatherURL = "https://api.openweathermap.org/data/2.5/weather"
+    private let weatherAPIKey = "bd5ac2232bd727451b6e7146911a3ea5"
+    
     // MARK: - Methods
-    func getWeatherByCity(city: String) {
-        let request = AF.request("https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=bd5ac2232bd727451b6e7146911a3ea5")
+    func getWeatherByCity(city: String, completion: @escaping (WeatherAPI) -> Void) {
+        
+        let request = AF.request("\(weatherURL)?q=\(city)&appid=\(weatherAPIKey)")
         
         request.responseDecodable(of: WeatherAPI.self) { response in
             guard let weather = response.value else {
@@ -21,7 +26,7 @@ final class NetworkManager {
                 print("No such city")
                 return
             }
-            print(weather)
+            completion(weather)
         }
     }
 }
