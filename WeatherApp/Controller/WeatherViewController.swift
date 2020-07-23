@@ -38,6 +38,7 @@ final class WeatherViewController: UIViewController {
         super.viewDidLoad()
         
         configurateView()
+
         
             networkManager.getWeatherByCity(city: Constants.defaultCity.rawValue) { weather in
                 print(weather.name)
@@ -45,6 +46,9 @@ final class WeatherViewController: UIViewController {
                 self.temperatureLabel.text = String(format: "%.0f", weather.main.tempCelsius) + "°"
                 self.save(city: weather.name, and: weather.main.tempCelsius)
         }
+
+        // TODO: - First app launch location
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
