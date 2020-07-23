@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 final class WeatherViewController: UIViewController {
     
@@ -18,6 +19,7 @@ final class WeatherViewController: UIViewController {
     private let temperatureLabel = UILabel()
     private var addedCities: [WeatherAPI] = []
     private let networkManager = NetworkManager()
+    private let context = CoreDataStack().persistentContainer.viewContext
     
     //MARK: - Constants
     
@@ -38,11 +40,30 @@ final class WeatherViewController: UIViewController {
         super.viewWillAppear(animated)
         
         networkManager.getWeatherByCity(city: "Moscow") { weather in
+//            print(weather)
+            print(weather.name)
             self.cityLabel.text = weather.name
             self.temperatureLabel.text = String(format: "%.0f", weather.main.tempCelsius) + "°"
+//            self.save(city: weather.name, and: weather.main.tempCelsius)
+            
         }
         //TODO: load data & update table view & labels
     }
+    
+//    private func save(city: String, and temperature: Double) {
+//        guard let entity = NSEntityDescription.entity(forEntityName: "City", in: self.context) else { return }
+//        let cityObject = City(entity: entity, insertInto: self.context)
+//        cityObject.name = city
+//        cityObject.temperature = temperature
+//        
+//        do {
+//            try self.context.save()
+//            print("Added city \(cityObject) in Core data")
+//            print(cityObject)
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//    }
 }
 
 //MARK: - TableView Protocols Implementation
@@ -102,10 +123,10 @@ extension WeatherViewController {
     }
     
     private func setStackViewConstraints() {
-        let indent: CGFloat = ((navigationController?.navigationBar.frame.height) ?? 0) + 32
+        let indent: CGFloat = ((navigationController?.navigationBar.frame.height) ?? 0)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: indent),
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: indent),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])

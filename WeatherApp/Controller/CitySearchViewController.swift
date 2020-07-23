@@ -14,8 +14,10 @@ final class CitySearchViewController: UIViewController {
     
     private let tableView = UITableView()
     private let searchController = UISearchController(searchResultsController: nil)
-    private let cities: [WeatherAPI] = []
-    private var filteredCities: [WeatherAPI] = []
+    private var cities: [String] = []
+    private var filteredCities: [String] = []
+//    private let cities: [WeatherAPI] = []
+//    private var filteredCities: [WeatherAPI] = []
     
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -29,8 +31,10 @@ final class CitySearchViewController: UIViewController {
     
     private enum Constants: String {
         case cellId
-        case cities = "Cities"
+        case title = "Cities List"
         case placeholder = "Search City"
+        case fileName = "Cities"
+        case fileType = "txt"
     }
     
     //MARK: - Life Cycle
@@ -44,11 +48,22 @@ final class CitySearchViewController: UIViewController {
         configurateTableView()
         setTableViewConstraints()
         configurateSearchController()
+        
+        readFromFile(name: Constants.fileName.rawValue, ofType: Constants.fileType.rawValue)
+    }
+    
+    private func readFromFile(name: String, ofType: String) {
+        if let path = Bundle.main.path(forResource: name, ofType: ofType) {
+            if let citiesList = try? String(contentsOfFile: path) {
+                cities = citiesList.components(separatedBy: "\n\n")
+                print("\(cities.count)" + "\(cities)")
+            }
+        }
     }
     
     private func filterContentForSearchText(_ searchText: String) {
         filteredCities = cities.filter { (city) -> Bool in
-            return city.name.lowercased().contains(searchText.lowercased())
+            return city.lowercased().contains(searchText.lowercased())
         }
         
         tableView.reloadData()
@@ -71,9 +86,9 @@ extension CitySearchViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellId.rawValue, for: indexPath)
         if isFiltering {
-            cell.textLabel!.text = filteredCities[indexPath.row].name
+            cell.textLabel!.text = filteredCities[indexPath.row]
         } else {
-            cell.textLabel!.text = cities[indexPath.row].name
+            cell.textLabel!.text = cities[indexPath.row]
         }
         
         return cell
@@ -106,7 +121,7 @@ extension CitySearchViewController {
     }
     
     private func configurateNavigation() {
-        navigationItem.title = Constants.cities.rawValue
+        navigationItem.title = Constants.title.rawValue
     }
     
     private func configurateTableView() {
