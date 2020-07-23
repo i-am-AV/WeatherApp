@@ -16,8 +16,8 @@ final class CitySearchViewController: UIViewController {
     private let searchController = UISearchController(searchResultsController: nil)
     private var cities: [String] = []
     private var filteredCities: [String] = []
-//    private let cities: [WeatherAPI] = []
-//    private var filteredCities: [WeatherAPI] = []
+    private let context = CoreDataStack().persistentContainer.viewContext
+    private var defaults = Defaults()
     
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -41,7 +41,7 @@ final class CitySearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        dismiss(animated: true, completion: nil)
         view.backgroundColor = .white
         configurateNavigation()
         view.addSubview(tableView)
@@ -49,13 +49,16 @@ final class CitySearchViewController: UIViewController {
         setTableViewConstraints()
         configurateSearchController()
         
-        readFromFile(name: Constants.fileName.rawValue, ofType: Constants.fileType.rawValue)
+        readFromFile(name: Constants.fileName.rawValue,
+                     ofType: Constants.fileType.rawValue)
     }
+    
+    
     
     private func readFromFile(name: String, ofType: String) {
         if let path = Bundle.main.path(forResource: name, ofType: ofType) {
             if let citiesList = try? String(contentsOfFile: path) {
-                cities = citiesList.components(separatedBy: "\n\n")
+                cities = citiesList.components(separatedBy: "\n").filter({$0 != ""}).sorted()
                 print("\(cities.count)" + "\(cities)")
             }
         }
@@ -95,8 +98,14 @@ extension CitySearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         tableView.deselectRow(at: indexPath, animated: true)
-        //TODO: Add in UserDefaults or CoreData
+        
+        let cityName = cities[indexPath.row]
+        defaults.save(name: cityName)
+        tableView.reloadData()
+        
+        dismiss(animated: true, completion: nil)
     }
 }
 

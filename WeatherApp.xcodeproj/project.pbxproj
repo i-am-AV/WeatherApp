@@ -22,6 +22,8 @@
 		9560158024C8993100F98252 /* City+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9560157E24C8993100F98252 /* City+CoreDataClass.swift */; };
 		9560158124C8993100F98252 /* City+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9560157F24C8993100F98252 /* City+CoreDataProperties.swift */; };
 		956015C624C99FA100F98252 /* Cities.txt in Resources */ = {isa = PBXBuildFile; fileRef = 956015C524C99FA100F98252 /* Cities.txt */; };
+		956015C924C9B9A000F98252 /* CoreDataInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956015C824C9B9A000F98252 /* CoreDataInterface.swift */; };
+		956015D824C9C12400F98252 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956015D724C9C12400F98252 /* Defaults.swift */; };
 		B6A9D575E315EC39419C284F /* Pods_WeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F0C954CB75C8475F6ED0B7A /* Pods_WeatherApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +47,8 @@
 		9560157E24C8993100F98252 /* City+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "City+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9560157F24C8993100F98252 /* City+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "City+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		956015C524C99FA100F98252 /* Cities.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cities.txt; sourceTree = "<group>"; };
+		956015C824C9B9A000F98252 /* CoreDataInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataInterface.swift; sourceTree = "<group>"; };
+		956015D724C9C12400F98252 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		9F0C954CB75C8475F6ED0B7A /* Pods_WeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -118,6 +122,7 @@
 		9559D8EE24C6A94700151574 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
+				956015D624C9C10E00F98252 /* UserDefaults */,
 				2DE1908F24C8780500C9F215 /* Services */,
 				9559D90324C6F4BA00151574 /* Model */,
 				9559D90424C6F4CD00151574 /* View */,
@@ -157,6 +162,7 @@
 		9560156D24C893F400F98252 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				956015C724C9B97800F98252 /* CoreDataInterface */,
 				9560158224C8996300F98252 /* GeneratedClasses */,
 				9560156F24C8941300F98252 /* CoreDataStack */,
 				9560156E24C8940800F98252 /* Model */,
@@ -187,6 +193,22 @@
 				9560157F24C8993100F98252 /* City+CoreDataProperties.swift */,
 			);
 			path = GeneratedClasses;
+			sourceTree = "<group>";
+		};
+		956015C724C9B97800F98252 /* CoreDataInterface */ = {
+			isa = PBXGroup;
+			children = (
+				956015C824C9B9A000F98252 /* CoreDataInterface.swift */,
+			);
+			path = CoreDataInterface;
+			sourceTree = "<group>";
+		};
+		956015D624C9C10E00F98252 /* UserDefaults */ = {
+			isa = PBXGroup;
+			children = (
+				956015D724C9C12400F98252 /* Defaults.swift */,
+			);
+			path = UserDefaults;
 			sourceTree = "<group>";
 		};
 		F612244D142598D9542F2242 /* Pods */ = {
@@ -314,6 +336,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				951ACEDC24C7241A00CBE2D0 /* LabelExtension.swift in Sources */,
+				956015D824C9C12400F98252 /* Defaults.swift in Sources */,
 				9559D90724C6F60400151574 /* CitySearchViewController.swift in Sources */,
 				9559D90D24C6F76200151574 /* WeatherViewController.swift in Sources */,
 				951ACF0124C7A2D200CBE2D0 /* Model.swift in Sources */,
@@ -325,6 +348,7 @@
 				9560156C24C8935D00F98252 /* WeatherAppModel.xcdatamodeld in Sources */,
 				951ACEFF24C786A800CBE2D0 /* StackViewExtension.swift in Sources */,
 				9560158024C8993100F98252 /* City+CoreDataClass.swift in Sources */,
+				956015C924C9B9A000F98252 /* CoreDataInterface.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,7 +489,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2VY9AS466G;
 				INFOPLIST_FILE = WeatherApp/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -487,7 +511,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 2VY9AS466G;
 				INFOPLIST_FILE = WeatherApp/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
