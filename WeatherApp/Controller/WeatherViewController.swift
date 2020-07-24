@@ -19,18 +19,17 @@ final class WeatherViewController: UIViewController {
     private let cityLabel = UILabel()
     private let temperatureLabel = UILabel()
     
-    private var addedCities: [String] = [Constants.defaultCity.rawValue]
+    private var addedCities: [String] = []
     
     private let networkManager = NetworkManager()
     private var locationManager: LocationManager?
     private let context = CoreDataStack().persistentContainer.viewContext
-    private let defaults = Defaults()
+    private var defaults = Defaults()
     //MARK: - Constants
     
     private enum Constants: String {
         case cellId
         case title = "Weather"
-        case defaultCity = "Cupertino"
         case entityName = "City"
     }
     
@@ -40,11 +39,6 @@ final class WeatherViewController: UIViewController {
         super.viewDidLoad()
         locationManager = LocationManager(client: self)
         configurateView()
-        
-        
-
-        // TODO: - First app launch location
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -224,9 +218,10 @@ extension WeatherViewController: CLLocationManagerDelegate {
             locationManager?.getPlace(for: location) { (placemark) in
                 guard let city = placemark?.locality?.applyingTransform(.toLatin, reverse: false) else { return }
                 self.networkManager.getWeatherByCity(city: city) { weather in
-                    print(weather.name)
                     self.cityLabel.text = weather.name
                     self.temperatureLabel.text = String(format: "%.0f", weather.main.tempCelsius) + "°"
+                    self.addedCities.append(weather.name)
+                    self.tableView.reloadData()
                     self.save(city: weather.name, and: weather.main.tempCelsius)
                 }
             }
