@@ -23,7 +23,6 @@ final class WeatherViewController: UIViewController {
     
     private let networkManager = NetworkManager()
     private var locationManager: LocationManager!
-    private let context = CoreDataStack().persistentContainer.viewContext
     //MARK: - Constants
     
     private enum Constants: String {
@@ -42,10 +41,6 @@ final class WeatherViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        
-        //TODO: - Reading from CoreData
-        //TODO: - Added cities to CoreData
         
         tableView.reloadData()
         print(addedCities)
@@ -74,59 +69,9 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
         networkManager.getWeatherByCity(city: city) { (weather) in
             self.cityLabel.text = weather.name
             self.temperatureLabel.text = String(format: "%.0f", weather.main.tempCelsius) + "°"
-            self.save(city: weather.name, and: weather.main.tempCelsius)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
-//MARK: - CoreData Implementation
-
-extension WeatherViewController: CoreDataInterface {
-    
-    internal func save(city: String, and temperature: Double) {
-        guard let entity = NSEntityDescription.entity(forEntityName: Constants.entityName.rawValue, in: self.context) else { return }
-        let cityObject = City(entity: entity, insertInto: self.context)
-        cityObject.name = city
-        cityObject.temperature = temperature
-        
-        do {
-            try self.context.save()
-            print("Added city \(cityObject) in Core data")
-            print(cityObject)
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    internal func fetchRequest() {
-        
-        let fetchRequest: NSFetchRequest<City> = City.fetchRequest()
-        
-        do {
-            let city = try context.fetch(fetchRequest)
-            print(city)
-            
-            cityLabel.text = city.first!.name
-            temperatureLabel.text = String(format: "%.0f", city.first!.temperature) + "°"
-            
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    internal func citiesCount() -> Int? {
-        let fetchRequest: NSFetchRequest<City> = City.fetchRequest()
-        
-        do {
-            let city = try context.fetch(fetchRequest)
-            return city.count
-            
-        } catch {
-            print(error.localizedDescription)
-            return nil
-        }
     }
 }
 
@@ -222,7 +167,6 @@ extension WeatherViewController: CLLocationManagerDelegate {
                     self.temperatureLabel.text = String(format: "%.0f", weather.main.tempCelsius) + "°"
                     self.addedCities.append(weather.name)
                     self.tableView.reloadData()
-                    self.save(city: weather.name, and: weather.main.tempCelsius)
                 }
             }
         case .authorizedAlways:

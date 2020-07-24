@@ -16,7 +16,6 @@ final class CitySearchViewController: UIViewController {
     private let searchController = UISearchController(searchResultsController: nil)
     private var cities: [String] = []
     private var filteredCities: [String] = []
-    private let context = CoreDataStack().persistentContainer.viewContext
     
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
