@@ -22,7 +22,7 @@ final class WeatherViewController: UIViewController {
     private var addedCities: [String] = []
     
     private let networkManager = NetworkManager()
-    private var locationManager: LocationManager?
+    private var locationManager: LocationManager!
     private let context = CoreDataStack().persistentContainer.viewContext
     private var defaults = Defaults()
     //MARK: - Constants
@@ -211,11 +211,11 @@ extension WeatherViewController: CLLocationManagerDelegate {
             print("notDetermined")
         case .authorizedWhenInUse:
             print("authorizedWhenInUse")
-            guard let location = locationManager?.exposedLocation else {
+            guard let location = locationManager.exposedLocation else {
                 print("Location is nil")
                 return
             }
-            locationManager?.getPlace(for: location) { (placemark) in
+            locationManager.getPlace(for: location) { (placemark) in
                 guard let city = placemark?.locality?.applyingTransform(.toLatin, reverse: false) else { return }
                 self.networkManager.getWeatherByCity(city: city) { weather in
                     self.cityLabel.text = weather.name
