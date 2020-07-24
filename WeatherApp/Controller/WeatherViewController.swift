@@ -79,6 +79,16 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
         
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            addedCities.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        default:
+            break
+        }
+    }
 }
 
 //MARK: - Configurations & Constraints
