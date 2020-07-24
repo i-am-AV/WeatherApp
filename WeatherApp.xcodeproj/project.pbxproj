@@ -12,18 +12,13 @@
 		951ACEDC24C7241A00CBE2D0 /* LabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951ACEDB24C7241A00CBE2D0 /* LabelExtension.swift */; };
 		951ACEFF24C786A800CBE2D0 /* StackViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951ACEFE24C786A800CBE2D0 /* StackViewExtension.swift */; };
 		951ACF0124C7A2D200CBE2D0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951ACF0024C7A2D200CBE2D0 /* Model.swift */; };
+		952F0C0E24CB49D200814989 /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952F0C0D24CB49D200814989 /* ImageViewExtension.swift */; };
 		9559D8F024C6A94700151574 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9559D8EF24C6A94700151574 /* AppDelegate.swift */; };
 		9559D8F924C6A94800151574 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9559D8F824C6A94800151574 /* Assets.xcassets */; };
 		9559D8FC24C6A94800151574 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9559D8FA24C6A94800151574 /* LaunchScreen.storyboard */; };
 		9559D90724C6F60400151574 /* CitySearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9559D90624C6F60400151574 /* CitySearchViewController.swift */; };
 		9559D90D24C6F76200151574 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9559D90C24C6F76200151574 /* WeatherViewController.swift */; };
-		9560156C24C8935D00F98252 /* WeatherAppModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9560156A24C8935D00F98252 /* WeatherAppModel.xcdatamodeld */; };
-		9560157124C8942700F98252 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9560157024C8942700F98252 /* CoreDataStack.swift */; };
-		9560158024C8993100F98252 /* City+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9560157E24C8993100F98252 /* City+CoreDataClass.swift */; };
-		9560158124C8993100F98252 /* City+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9560157F24C8993100F98252 /* City+CoreDataProperties.swift */; };
 		956015C624C99FA100F98252 /* Cities.txt in Resources */ = {isa = PBXBuildFile; fileRef = 956015C524C99FA100F98252 /* Cities.txt */; };
-		956015C924C9B9A000F98252 /* CoreDataInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956015C824C9B9A000F98252 /* CoreDataInterface.swift */; };
-		956015D824C9C12400F98252 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956015D724C9C12400F98252 /* Defaults.swift */; };
 		B6A9D575E315EC39419C284F /* Pods_WeatherApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F0C954CB75C8475F6ED0B7A /* Pods_WeatherApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +30,7 @@
 		951ACEDB24C7241A00CBE2D0 /* LabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtension.swift; sourceTree = "<group>"; };
 		951ACEFE24C786A800CBE2D0 /* StackViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewExtension.swift; sourceTree = "<group>"; };
 		951ACF0024C7A2D200CBE2D0 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		952F0C0D24CB49D200814989 /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
 		9559D8EC24C6A94700151574 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9559D8EF24C6A94700151574 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9559D8F824C6A94800151574 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -42,13 +38,7 @@
 		9559D8FD24C6A94800151574 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9559D90624C6F60400151574 /* CitySearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CitySearchViewController.swift; path = WeatherApp/Controller/CitySearchViewController.swift; sourceTree = SOURCE_ROOT; };
 		9559D90C24C6F76200151574 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
-		9560156B24C8935D00F98252 /* WeatherAppModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeatherAppModel.xcdatamodel; sourceTree = "<group>"; };
-		9560157024C8942700F98252 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		9560157E24C8993100F98252 /* City+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "City+CoreDataClass.swift"; sourceTree = "<group>"; };
-		9560157F24C8993100F98252 /* City+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "City+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		956015C524C99FA100F98252 /* Cities.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cities.txt; sourceTree = "<group>"; };
-		956015C824C9B9A000F98252 /* CoreDataInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataInterface.swift; sourceTree = "<group>"; };
-		956015D724C9C12400F98252 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		9F0C954CB75C8475F6ED0B7A /* Pods_WeatherApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -86,6 +76,7 @@
 			children = (
 				951ACEDB24C7241A00CBE2D0 /* LabelExtension.swift */,
 				951ACEFE24C786A800CBE2D0 /* StackViewExtension.swift */,
+				952F0C0D24CB49D200814989 /* ImageViewExtension.swift */,
 			);
 			path = UIExtensions;
 			sourceTree = "<group>";
@@ -122,13 +113,11 @@
 		9559D8EE24C6A94700151574 /* WeatherApp */ = {
 			isa = PBXGroup;
 			children = (
-				956015D624C9C10E00F98252 /* UserDefaults */,
 				2DE1908F24C8780500C9F215 /* Services */,
 				9559D90324C6F4BA00151574 /* Model */,
 				9559D90424C6F4CD00151574 /* View */,
 				9559D90524C6F4D500151574 /* Controller */,
 				951ACF0224C7A5AB00CBE2D0 /* Resources */,
-				9560156D24C893F400F98252 /* CoreData */,
 			);
 			path = WeatherApp;
 			sourceTree = "<group>";
@@ -157,58 +146,6 @@
 				9559D90624C6F60400151574 /* CitySearchViewController.swift */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		9560156D24C893F400F98252 /* CoreData */ = {
-			isa = PBXGroup;
-			children = (
-				956015C724C9B97800F98252 /* CoreDataInterface */,
-				9560158224C8996300F98252 /* GeneratedClasses */,
-				9560156F24C8941300F98252 /* CoreDataStack */,
-				9560156E24C8940800F98252 /* Model */,
-			);
-			path = CoreData;
-			sourceTree = "<group>";
-		};
-		9560156E24C8940800F98252 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				9560156A24C8935D00F98252 /* WeatherAppModel.xcdatamodeld */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		9560156F24C8941300F98252 /* CoreDataStack */ = {
-			isa = PBXGroup;
-			children = (
-				9560157024C8942700F98252 /* CoreDataStack.swift */,
-			);
-			path = CoreDataStack;
-			sourceTree = "<group>";
-		};
-		9560158224C8996300F98252 /* GeneratedClasses */ = {
-			isa = PBXGroup;
-			children = (
-				9560157E24C8993100F98252 /* City+CoreDataClass.swift */,
-				9560157F24C8993100F98252 /* City+CoreDataProperties.swift */,
-			);
-			path = GeneratedClasses;
-			sourceTree = "<group>";
-		};
-		956015C724C9B97800F98252 /* CoreDataInterface */ = {
-			isa = PBXGroup;
-			children = (
-				956015C824C9B9A000F98252 /* CoreDataInterface.swift */,
-			);
-			path = CoreDataInterface;
-			sourceTree = "<group>";
-		};
-		956015D624C9C10E00F98252 /* UserDefaults */ = {
-			isa = PBXGroup;
-			children = (
-				956015D724C9C12400F98252 /* Defaults.swift */,
-			);
-			path = UserDefaults;
 			sourceTree = "<group>";
 		};
 		F612244D142598D9542F2242 /* Pods */ = {
@@ -336,19 +273,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				951ACEDC24C7241A00CBE2D0 /* LabelExtension.swift in Sources */,
-				956015D824C9C12400F98252 /* Defaults.swift in Sources */,
 				9559D90724C6F60400151574 /* CitySearchViewController.swift in Sources */,
 				9559D90D24C6F76200151574 /* WeatherViewController.swift in Sources */,
 				951ACF0124C7A2D200CBE2D0 /* Model.swift in Sources */,
+				952F0C0E24CB49D200814989 /* ImageViewExtension.swift in Sources */,
 				2DE1909124C87A6400C9F215 /* NetworkManager.swift in Sources */,
-				9560157124C8942700F98252 /* CoreDataStack.swift in Sources */,
 				2DCE3BF124C6E2A400FC676E /* LocationManager.swift in Sources */,
 				9559D8F024C6A94700151574 /* AppDelegate.swift in Sources */,
-				9560158124C8993100F98252 /* City+CoreDataProperties.swift in Sources */,
-				9560156C24C8935D00F98252 /* WeatherAppModel.xcdatamodeld in Sources */,
 				951ACEFF24C786A800CBE2D0 /* StackViewExtension.swift in Sources */,
-				9560158024C8993100F98252 /* City+CoreDataClass.swift in Sources */,
-				956015C924C9B9A000F98252 /* CoreDataInterface.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,19 +478,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		9560156A24C8935D00F98252 /* WeatherAppModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				9560156B24C8935D00F98252 /* WeatherAppModel.xcdatamodel */,
-			);
-			currentVersion = 9560156B24C8935D00F98252 /* WeatherAppModel.xcdatamodel */;
-			path = WeatherAppModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 9559D8E424C6A94700151574 /* Project object */;
 }

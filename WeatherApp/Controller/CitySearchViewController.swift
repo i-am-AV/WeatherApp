@@ -16,8 +16,6 @@ final class CitySearchViewController: UIViewController {
     private let searchController = UISearchController(searchResultsController: nil)
     private var cities: [String] = []
     private var filteredCities: [String] = []
-    private let context = CoreDataStack().persistentContainer.viewContext
-    private var defaults = Defaults()
     
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -98,14 +96,21 @@ extension CitySearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var city = ""
+        if isFiltering {
+            city = filteredCities[indexPath.row]
+        } else {
+            city = cities[indexPath.row]
+        }
         
+        dismiss(animated: true, completion: {
+            self.navigationController?.popViewController(animated: true)
+            let weatherVC = self.navigationController?.viewControllers.first as! WeatherViewController
+            if !weatherVC.addedCities.contains(city) {
+                weatherVC.addedCities.append(city)
+            }
+        })
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let cityName = cities[indexPath.row]
-        defaults.save(name: cityName)
-        tableView.reloadData()
-        
-        dismiss(animated: true, completion: nil)
     }
 }
 

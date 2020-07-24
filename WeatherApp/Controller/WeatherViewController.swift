@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import CoreLocation
+import Kingfisher
 
 final class WeatherViewController: UIViewController {
     
@@ -17,14 +18,14 @@ final class WeatherViewController: UIViewController {
     private let stackView = UIStackView()
     private let tableView = UITableView()
     private let cityLabel = UILabel()
+    private let descriptionLabel = UILabel()
+    private let iconImageView = UIImageView()
     private let temperatureLabel = UILabel()
     
-    private var addedCities: [String] = []
+    var addedCities: [String] = []
     
     private let networkManager = NetworkManager()
-    private var locationManager: LocationManager?
-    private let context = CoreDataStack().persistentContainer.viewContext
-    private var defaults = Defaults()
+    private var locationManager: LocationManager!
     //MARK: - Constants
     
     private enum Constants: String {
@@ -44,10 +45,7 @@ final class WeatherViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        addedCities =  Set(addedCities + defaults.getData()).sorted()
-        
         tableView.reloadData()
-        print(addedCities)
     }
 }
 
@@ -73,60 +71,13 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
         networkManager.getWeatherByCity(city: city) { (weather) in
             self.cityLabel.text = weather.name
             self.temperatureLabel.text = String(format: "%.0f", weather.main.tempCelsius) + "°"
-            self.save(city: weather.name, and: weather.main.tempCelsius)
+            self.descriptionLabel.text = weather.weather.first?.weatherDescription
+            let imageId = weather.weather.first!.icon
+            let url = URL(string: "https://openweathermap.org/img/wn/\(imageId)@2x.png")
+            self.iconImageView.kf.setImage(with: url)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-}
-
-//MARK: - CoreData Implementation
-
-extension WeatherViewController: CoreDataInterface {
-    
-    internal func save(city: String, and temperature: Double) {
-        guard let entity = NSEntityDescription.entity(forEntityName: Constants.entityName.rawValue, in: self.context) else { return }
-        let cityObject = City(entity: entity, insertInto: self.context)
-        cityObject.name = city
-        cityObject.temperature = temperature
-        
-        do {
-            try self.context.save()
-            print("Added city \(cityObject) in Core data")
-            print(cityObject)
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    internal func fetchRequest() {
-        
-        let fetchRequest: NSFetchRequest<City> = City.fetchRequest()
-        
-        do {
-            let city = try context.fetch(fetchRequest)
-            print(city)
-            
-            cityLabel.text = city.first!.name
-            temperatureLabel.text = String(format: "%.0f", city.first!.temperature) + "°"
-            
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
-    
-    internal func citiesCount() -> Int? {
-        let fetchRequest: NSFetchRequest<City> = City.fetchRequest()
-        
-        do {
-            let city = try context.fetch(fetchRequest)
-            return city.count
-            
-        } catch {
-            print(error.localizedDescription)
-            return nil
-        }
-        
     }
 }
 
@@ -163,9 +114,12 @@ extension WeatherViewController {
         
         cityLabel.configurateCityLabel()
         temperatureLabel.configurateTemperatureLabel()
-        
+        descriptionLabel.configurateDescriptionLabel()
+        iconImageView.configuration()
         stackView.configuration()
         stackView.addArrangedSubview(cityLabel)
+        stackView.addArrangedSubview(descriptionLabel)
+        stackView.addArrangedSubview(iconImageView)
         stackView.addArrangedSubview(temperatureLabel)
     }
     
@@ -211,18 +165,17 @@ extension WeatherViewController: CLLocationManagerDelegate {
             print("notDetermined")
         case .authorizedWhenInUse:
             print("authorizedWhenInUse")
-            guard let location = locationManager?.exposedLocation else {
+            guard let location = locationManager.exposedLocation else {
                 print("Location is nil")
                 return
             }
-            locationManager?.getPlace(for: location) { (placemark) in
+            locationManager.getPlace(for: location) { (placemark) in
                 guard let city = placemark?.locality?.applyingTransform(.toLatin, reverse: false) else { return }
                 self.networkManager.getWeatherByCity(city: city) { weather in
                     self.cityLabel.text = weather.name
                     self.temperatureLabel.text = String(format: "%.0f", weather.main.tempCelsius) + "°"
                     self.addedCities.append(weather.name)
                     self.tableView.reloadData()
-                    self.save(city: weather.name, and: weather.main.tempCelsius)
                 }
             }
         case .authorizedAlways:

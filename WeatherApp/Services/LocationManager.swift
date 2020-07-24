@@ -11,6 +11,7 @@ import CoreLocation
 
 
 final class LocationManager: NSObject {
+    
     //MARK: - Property
     private let locationManager = CLLocationManager()
     var exposedLocation: CLLocation? {
@@ -24,6 +25,7 @@ final class LocationManager: NSObject {
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
     }
+    
     //MARK: - Methods
     func getPlace(for location: CLLocation,
                   completion: @escaping (CLPlacemark?) -> Void) {
