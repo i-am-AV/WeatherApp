@@ -24,7 +24,6 @@ final class WeatherViewController: UIViewController {
     private let networkManager = NetworkManager()
     private var locationManager: LocationManager!
     private let context = CoreDataStack().persistentContainer.viewContext
-    private var defaults = Defaults()
     //MARK: - Constants
     
     private enum Constants: String {
@@ -43,8 +42,6 @@ final class WeatherViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        addedCities =  Set(addedCities + defaults.getData()).sorted()
         
         tableView.reloadData()
         print(addedCities)

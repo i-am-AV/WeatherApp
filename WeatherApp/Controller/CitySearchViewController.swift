@@ -17,7 +17,6 @@ final class CitySearchViewController: UIViewController {
     private var cities: [String] = []
     private var filteredCities: [String] = []
     private let context = CoreDataStack().persistentContainer.viewContext
-    private var defaults = Defaults()
     
     var isSearchBarEmpty: Bool {
         return searchController.searchBar.text?.isEmpty ?? true
@@ -102,7 +101,6 @@ extension CitySearchViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let cityName = cities[indexPath.row]
-        defaults.save(name: cityName)
         tableView.reloadData()
         
         dismiss(animated: true, completion: nil)
