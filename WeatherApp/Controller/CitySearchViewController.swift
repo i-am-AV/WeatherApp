@@ -16,7 +16,6 @@ final class CitySearchViewController: UIViewController {
     private let searchController = UISearchController(searchResultsController: nil)
     private var cities: [String] = []
     private var filteredCities: [String] = []
-    private let context = CoreDataStack().persistentContainer.viewContext
     private var defaults = Defaults()
     
     var isSearchBarEmpty: Bool {
@@ -59,7 +58,6 @@ final class CitySearchViewController: UIViewController {
         if let path = Bundle.main.path(forResource: name, ofType: ofType) {
             if let citiesList = try? String(contentsOfFile: path) {
                 cities = citiesList.components(separatedBy: "\n").filter({$0 != ""}).sorted()
-                print("\(cities.count)" + "\(cities)")
             }
         }
     }
