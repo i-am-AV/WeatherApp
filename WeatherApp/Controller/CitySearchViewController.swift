@@ -96,8 +96,13 @@ extension CitySearchViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var city = ""
+        if isFiltering {
+            city = filteredCities[indexPath.row]
+        } else {
+            city = cities[indexPath.row]
+        }
         
-        let city = cities[indexPath.row]
         dismiss(animated: true, completion: {
             self.navigationController?.popViewController(animated: true)
             let weatherVC = self.navigationController?.viewControllers.first as! WeatherViewController

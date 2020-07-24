@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import CoreLocation
+import Kingfisher
 
 final class WeatherViewController: UIViewController {
     
@@ -17,6 +18,8 @@ final class WeatherViewController: UIViewController {
     private let stackView = UIStackView()
     private let tableView = UITableView()
     private let cityLabel = UILabel()
+    private let descriptionLabel = UILabel()
+    private let iconImageView = UIImageView()
     private let temperatureLabel = UILabel()
     
     var addedCities: [String] = []
@@ -43,7 +46,6 @@ final class WeatherViewController: UIViewController {
         super.viewWillAppear(animated)
         
         tableView.reloadData()
-        print(addedCities)
     }
 }
 
@@ -69,6 +71,10 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
         networkManager.getWeatherByCity(city: city) { (weather) in
             self.cityLabel.text = weather.name
             self.temperatureLabel.text = String(format: "%.0f", weather.main.tempCelsius) + "°"
+            self.descriptionLabel.text = weather.weather.first?.weatherDescription
+            let imageId = weather.weather.first!.icon
+            let url = URL(string: "https://openweathermap.org/img/wn/\(imageId)@2x.png")
+            self.iconImageView.kf.setImage(with: url)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -108,9 +114,12 @@ extension WeatherViewController {
         
         cityLabel.configurateCityLabel()
         temperatureLabel.configurateTemperatureLabel()
-        
+        descriptionLabel.configurateDescriptionLabel()
+        iconImageView.configuration()
         stackView.configuration()
         stackView.addArrangedSubview(cityLabel)
+        stackView.addArrangedSubview(descriptionLabel)
+        stackView.addArrangedSubview(iconImageView)
         stackView.addArrangedSubview(temperatureLabel)
     }
     

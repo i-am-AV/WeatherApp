@@ -7,5 +7,6 @@ target 'WeatherApp' do
 
   # Pods for WeatherApp
 	pod 'Alamofire', '~> 5.2'
+	pod 'Kingfisher', '~> 5.14.1'
 
 end
