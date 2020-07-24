@@ -14,6 +14,7 @@ struct Defaults {
     
     mutating func save(name: String) {
         if !city.names.contains(name) {
+            print("Сохраненные города - \(city.names)")
             city.names.append(name)
         }
     }
@@ -43,6 +44,7 @@ struct Defaults {
         set {
             userDefaults.set(newValue, forKey: Keys.name.rawValue)
             userDefaults.synchronize()
+            print("Название города сохранено")
         }
     }
     
