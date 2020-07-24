@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 final class WeatherViewController: UIViewController {
     
@@ -21,6 +22,7 @@ final class WeatherViewController: UIViewController {
     private var addedCities: [String] = [Constants.defaultCity.rawValue]
     
     private let networkManager = NetworkManager()
+    private var locationManager: LocationManager?
     private let context = CoreDataStack().persistentContainer.viewContext
     private let defaults = Defaults()
     //MARK: - Constants
@@ -28,7 +30,7 @@ final class WeatherViewController: UIViewController {
     private enum Constants: String {
         case cellId
         case title = "Weather"
-        case defaultCity = "Moscow"
+        case defaultCity = "Cupertino"
         case entityName = "City"
     }
     
@@ -36,19 +38,13 @@ final class WeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        locationManager = LocationManager(client: self)
         configurateView()
-
         
-            networkManager.getWeatherByCity(city: Constants.defaultCity.rawValue) { weather in
-                print(weather.name)
-                self.cityLabel.text = weather.name
-                self.temperatureLabel.text = String(format: "%.0f", weather.main.tempCelsius) + "°"
-                self.save(city: weather.name, and: weather.main.tempCelsius)
-        }
+        
 
         // TODO: - First app launch location
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -207,5 +203,41 @@ extension WeatherViewController {
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             tableView.heightAnchor.constraint(equalToConstant: height / 2)
         ])
+    }
+}
+
+// MARK: - CoreLocation Delegate
+extension WeatherViewController: CLLocationManagerDelegate {
+    
+    
+    func locationManager(_ manager: CLLocationManager,
+                         didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .notDetermined:
+            print("notDetermined")
+        case .authorizedWhenInUse:
+            print("authorizedWhenInUse")
+            guard let location = locationManager?.exposedLocation else {
+                print("Location is nil")
+                return
+            }
+            locationManager?.getPlace(for: location) { (placemark) in
+                guard let city = placemark?.locality?.applyingTransform(.toLatin, reverse: false) else { return }
+                self.networkManager.getWeatherByCity(city: city) { weather in
+                    print(weather.name)
+                    self.cityLabel.text = weather.name
+                    self.temperatureLabel.text = String(format: "%.0f", weather.main.tempCelsius) + "°"
+                    self.save(city: weather.name, and: weather.main.tempCelsius)
+                }
+            }
+        case .authorizedAlways:
+            print("authorizedAlways")
+        case .restricted:
+            print("restricted")           // TODO: handler
+        case .denied:
+            print("denied")               // TODO: handler
+        @unknown default:
+            print("New Status")
+        }
     }
 }
