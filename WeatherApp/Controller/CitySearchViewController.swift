@@ -98,12 +98,15 @@ extension CitySearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let city = cities[indexPath.row]
+        dismiss(animated: true, completion: {
+            self.navigationController?.popViewController(animated: true)
+            let weatherVC = self.navigationController?.viewControllers.first as! WeatherViewController
+            if !weatherVC.addedCities.contains(city) {
+                weatherVC.addedCities.append(city)
+            }
+        })
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let cityName = cities[indexPath.row]
-        tableView.reloadData()
-        
-        dismiss(animated: true, completion: nil)
     }
 }
 

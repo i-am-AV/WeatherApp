@@ -19,7 +19,7 @@ final class WeatherViewController: UIViewController {
     private let cityLabel = UILabel()
     private let temperatureLabel = UILabel()
     
-    private var addedCities: [String] = []
+    var addedCities: [String] = []
     
     private let networkManager = NetworkManager()
     private var locationManager: LocationManager!
@@ -42,6 +42,10 @@ final class WeatherViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        
+        //TODO: - Reading from CoreData
+        //TODO: - Added cities to CoreData
         
         tableView.reloadData()
         print(addedCities)
@@ -123,7 +127,6 @@ extension WeatherViewController: CoreDataInterface {
             print(error.localizedDescription)
             return nil
         }
-        
     }
 }
 
