@@ -132,6 +132,7 @@ extension CitySearchViewController {
     private func configurateSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.barStyle = .black
         searchController.searchBar.placeholder = Constants.placeholder.rawValue
         navigationItem.searchController = searchController
         definesPresentationContext = true

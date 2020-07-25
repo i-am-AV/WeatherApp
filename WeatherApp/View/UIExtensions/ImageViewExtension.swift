@@ -12,7 +12,7 @@ import Kingfisher
 extension UIImageView {
         
     func configuration() {
-        self.image = #imageLiteral(resourceName: "sun")
+        self.image = #imageLiteral(resourceName: "10d")
         self.contentMode = .scaleAspectFit
         size()
     }
@@ -24,7 +24,7 @@ extension UIImageView {
     
     private func size() {
         
-        let size = UIScreen.main.bounds.width / 4
+        let size = UIScreen.main.bounds.width / 4.5
         NSLayoutConstraint.activate([
             self.heightAnchor.constraint(equalToConstant: size),
             self.widthAnchor.constraint(equalToConstant: size)

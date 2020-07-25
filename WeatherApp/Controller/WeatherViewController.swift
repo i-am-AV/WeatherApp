@@ -14,6 +14,8 @@ final class WeatherViewController: UIViewController {
     
     //MARK: - Properties
     
+    private let topStackView = UIStackView()
+    private let bottomStackView = UIStackView()
     private let stackView = UIStackView()
     private let tableView = UITableView()
     private let cityLabel = UILabel()
@@ -124,17 +126,28 @@ extension WeatherViewController {
                                                       animated: true)
     }
     
-    private func configurateStackView() {
-        
+    private func configurateTopStackView() {
         cityLabel.configurateCityLabel()
-        temperatureLabel.configurateTemperatureLabel()
         descriptionLabel.configurateDescriptionLabel()
+        topStackView.configuration()
+        topStackView.addArrangedSubview(cityLabel)
+        topStackView.addArrangedSubview(descriptionLabel)
+    }
+    
+    private func configurateBottomStackView() {
+        temperatureLabel.configurateTemperatureLabel()
         iconImageView.configuration()
+        bottomStackView.configuration()
+        bottomStackView.addArrangedSubview(iconImageView)
+        bottomStackView.addArrangedSubview(temperatureLabel)
+    }
+    
+    private func configurateStackView() {
+        configurateTopStackView()
+        configurateBottomStackView()
         stackView.configuration()
-        stackView.addArrangedSubview(cityLabel)
-        stackView.addArrangedSubview(descriptionLabel)
-        stackView.addArrangedSubview(iconImageView)
-        stackView.addArrangedSubview(temperatureLabel)
+        stackView.addArrangedSubview(topStackView)
+        stackView.addArrangedSubview(bottomStackView)
     }
     
     private func setStackViewConstraints() {
