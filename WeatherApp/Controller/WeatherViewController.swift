@@ -9,7 +9,6 @@
 import UIKit
 import CoreData
 import CoreLocation
-import Kingfisher
 
 final class WeatherViewController: UIViewController {
     
@@ -26,6 +25,7 @@ final class WeatherViewController: UIViewController {
     
     private let networkManager = NetworkManager()
     private var locationManager: LocationManager!
+    
     //MARK: - Constants
     
     private enum Constants: String {
@@ -61,6 +61,8 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellId.rawValue, for: indexPath)
         
         cell.textLabel?.text = addedCities[indexPath.row]
+        cell.backgroundColor = .clear
+        cell.textLabel?.textColor = .white
         return cell
     }
     
@@ -68,13 +70,11 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
         
         let city = addedCities[indexPath.row]
         
-        networkManager.getWeatherByCity(city: city) { (weather) in
-            self.cityLabel.text = weather.name
-            self.temperatureLabel.text = String(format: "%.0f", weather.main.tempCelsius) + "°"
-            self.descriptionLabel.text = weather.weather.first?.weatherDescription
-            let imageId = weather.weather.first!.icon
-            let url = URL(string: "https://openweathermap.org/img/wn/\(imageId)@2x.png")
-            self.iconImageView.kf.setImage(with: url)
+        networkManager.getWeatherByCity(city: city) { (api) in
+            self.cityLabel.text = api.name
+            self.temperatureLabel.text = String(format: "%.0f", api.main.tempCelsius) + "°"
+            self.descriptionLabel.text = api.weather.first?.weatherDescription
+            self.iconImageView.addImage(with: api.weather.first!.icon)
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
@@ -95,7 +95,8 @@ extension WeatherViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension WeatherViewController {
     private func configurateView() {
-        view.backgroundColor = .white
+        
+        view.assignbackground()
         
         configurateNavigation()
         
@@ -109,6 +110,9 @@ extension WeatherViewController {
     }
     
     private func configurateNavigation() {
+        navigationController?.configurate()
+        navigationController?.navigationBar.tintColor = .white
+        
         navigationItem.title = Constants.title.rawValue
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
@@ -134,10 +138,9 @@ extension WeatherViewController {
     }
     
     private func setStackViewConstraints() {
-        let indent: CGFloat = ((navigationController?.navigationBar.frame.height) ?? 0)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: indent),
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
@@ -145,10 +148,7 @@ extension WeatherViewController {
     
     private func configurateTableView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellId.rawValue)
-        tableView.tableFooterView = UIView()
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.confugurate(in: self)
     }
     
     private func setTableViewConstraints() {

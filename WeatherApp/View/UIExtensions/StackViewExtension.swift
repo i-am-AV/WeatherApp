@@ -13,7 +13,7 @@ extension UIStackView {
     func configuration() {
         self.axis = .vertical
         self.alignment = .fill
-        self.distribution = .equalCentering //equalCentering
+        self.distribution = .equalSpacing
         self.translatesAutoresizingMaskIntoConstraints = false
     }
 }

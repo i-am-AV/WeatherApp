@@ -37,6 +37,7 @@ extension UILabel {
     
     private func confidurateLabel(with text: String, and font: UIFont) {
         self.text = text
+        self.textColor = .white
         self.font = font
         self.textAlignment = .center
         self.numberOfLines = 0

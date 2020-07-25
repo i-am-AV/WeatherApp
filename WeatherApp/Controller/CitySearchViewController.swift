@@ -39,8 +39,8 @@ final class CitySearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dismiss(animated: true, completion: nil)
-        view.backgroundColor = .white
+        
+        view.assignbackground()
         configurateNavigation()
         view.addSubview(tableView)
         configurateTableView()
@@ -92,6 +92,9 @@ extension CitySearchViewController: UITableViewDataSource, UITableViewDelegate {
             cell.textLabel!.text = cities[indexPath.row]
         }
         
+        cell.backgroundColor = .clear
+        cell.textLabel?.textColor = .white
+        
         return cell
     }
     
@@ -140,10 +143,7 @@ extension CitySearchViewController {
     
     private func configurateTableView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellId.rawValue)
-        tableView.tableFooterView = UIView()
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.confugurate(in: self)
     }
     
     private func setTableViewConstraints() {
