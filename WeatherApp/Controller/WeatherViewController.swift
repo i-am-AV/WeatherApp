@@ -42,6 +42,8 @@ final class WeatherViewController: UIViewController {
         super.viewDidLoad()
         locationManager = LocationManager(client: self)
         configurateView()
+        
+        view.accessibilityIdentifier = "MainViewController"
     }
     
     override func viewWillAppear(_ animated: Bool) {
