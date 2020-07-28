@@ -88,8 +88,10 @@ extension CitySearchViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellId.rawValue, for: indexPath)
         if isFiltering {
             cell.textLabel!.text = filteredCities[indexPath.row]
+            cell.accessibilityIdentifier = filteredCities[indexPath.row]
         } else {
             cell.textLabel!.text = cities[indexPath.row]
+            cell.accessibilityIdentifier = cities[indexPath.row]
         }
         
         cell.backgroundColor = .clear
@@ -140,11 +142,13 @@ extension CitySearchViewController {
     
     private func configurateNavigation() {
         navigationItem.title = Constants.title.rawValue
+        navigationController?.navigationBar.accessibilityIdentifier = "City navigation"
     }
     
     private func configurateTableView() {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.cellId.rawValue)
         tableView.confugurate(in: self)
+        tableView.accessibilityIdentifier = "City table"
     }
     
     private func setTableViewConstraints() {

@@ -119,6 +119,7 @@ extension WeatherViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
                                                             action: #selector(addTapped))
+        navigationItem.rightBarButtonItem?.accessibilityIdentifier = "Add button"
     }
     
     @objc private func addTapped() {
