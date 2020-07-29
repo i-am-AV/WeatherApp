@@ -12,6 +12,23 @@ import CoreLocation
 
 final class WeatherViewController: UIViewController {
     
+    //MARK: - Identifiers
+    
+    private enum Identifiers {
+        static let mainViewController = "MainViewController"
+        static let addButton = "Add button"
+        static let tableView = "TableView"
+    }
+    
+    //MARK: - Constants
+       
+       private enum Constants: String {
+           case cellId
+           case title = "Weather"
+           case entityName = "City"
+       }
+       
+    
     //MARK: - Properties
     
     private let topStackView = UIStackView()
@@ -28,14 +45,6 @@ final class WeatherViewController: UIViewController {
     private let networkManager = NetworkManager()
     private var locationManager: LocationManager!
     
-    //MARK: - Constants
-    
-    private enum Constants: String {
-        case cellId
-        case title = "Weather"
-        case entityName = "City"
-    }
-    
     //MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -43,7 +52,9 @@ final class WeatherViewController: UIViewController {
         locationManager = LocationManager(client: self)
         configurateView()
         
-        view.accessibilityIdentifier = "MainViewController"
+        view.accessibilityIdentifier = Identifiers.mainViewController
+        navigationItem.rightBarButtonItem?.accessibilityIdentifier = Identifiers.addButton
+        tableView.accessibilityIdentifier = Identifiers.tableView
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -10,6 +10,13 @@ import UIKit
 
 final class CitySearchViewController: UIViewController {
     
+    //MARK: - Identifiers
+    
+    private enum Identifiers {
+        static let cancelButton = "Cancel"
+        static let searchTextField = "Search City"
+    }
+    
     //MARK: - Properties
     
     private let tableView = UITableView()
@@ -49,6 +56,10 @@ final class CitySearchViewController: UIViewController {
         
         readFromFile(name: Constants.fileName.rawValue,
                      ofType: Constants.fileType.rawValue)
+        
+        
+        navigationItem.leftBarButtonItem?.accessibilityIdentifier = Identifiers.cancelButton
+        searchController.searchBar.searchTextField.accessibilityIdentifier = Identifiers.searchTextField
     }
     
     
